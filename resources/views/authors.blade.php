@@ -7,10 +7,11 @@
 </head>
 <body>
 <h1>Ini adalah halaman author buku</h1>
-    @foreach ($authors as $item)
+@foreach ($authors as $author)
     <ul>
-        <li>{{ $item['penulis'] }}</li>
+        <li>{{ $author['nama'] }}</li>
     </ul>
+    
     @endforeach
 </body>
 </html>

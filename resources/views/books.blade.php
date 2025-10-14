@@ -9,12 +9,12 @@
     <h1>Hello world</h1>
     <p>selamat datang di toko book sales</p>
   
-    @foreach ($books as $item)
+    @foreach ($books as $book)
     <ol>
-        <li>{{ $item['title'] }}</li>
-        <li>{{ $item ['description'] }}</li>
-        <li>{{ $item ['price'] }}</li>
-        <li>{{ $item ['stock'] }}</li>
+        <li>{{ $book['title'] }}</li>
+        <li>{{ $book ['description'] }}</li>
+        <li>{{ $book ['price'] }}</li>
+        <li>{{ $book ['stock'] }}</li>
     </ol>
     
     @endforeach

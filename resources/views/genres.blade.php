@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1>Ini adalah halaman genres buku</h1>
-    @foreach ($genres as $item)
+    @foreach ($genres as $genre)
     <ul>
-        <li>{{ $item['genre'] }}</li>
+        <li>{{$genre['name']}}</li>
+        <li>{{$genre['description']}}</li>
     </ul>
     
     @endforeach
