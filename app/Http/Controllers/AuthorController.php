@@ -49,4 +49,70 @@ class AuthorController extends Controller
             'data' => $author
         ], 201);
     }
+    public function show (string $id) {
+        $author = Author::find($id);
+
+        if (!$author){
+            return response()->json([
+                'succses'=> false,
+                'message'=>'resource not found'
+            ],400);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message'=> 'Get detail resource',
+            'data'=>$author
+        ], 200);
+    }
+    public function update(Request $request, string $id){
+        // mencari data
+        $author= Author::find($id);
+        if (!$author){
+            return response()->json([
+                'succses'=> false,
+                'message'=>'resource not found'
+            ],400);
+        }
+        // validator
+        $validator = Validator::make($request->all(),[
+             'nama' => 'required|string|max:100',
+        ]);
+        //cek validator
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()
+            ], 422);
+        }
+        //menyiapkan data yang ingin di update
+        $data = [
+            'nama'=>$request->nama,
+        ];
+        //update data ke database
+        $author->update($data);
+        return response()->json([
+            'success' => true,
+            'message'=> 'resource update succesfully',
+            'data'=>$author
+        ], 200);
+     }
+
+    public function destroy(string $id){
+        $author = Author::find($id);
+        if (!$author){
+            return response()->json([
+                'succses'=> false,
+                'message'=>'resource not found'
+            ],400);
+        }
+
+        $author->delete();
+
+        return response()->json([
+            'success' => true,
+            'message'=> 'Delete resource succesfully',
+            'data'=>$author
+        ]);
+    }
 }
