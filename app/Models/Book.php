@@ -10,4 +10,8 @@ class Book extends Model
 
     protected $fillable = ['title','description','price','stock','cover_photo','genre_id','author_id'];
     
+    public function transaksis()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
